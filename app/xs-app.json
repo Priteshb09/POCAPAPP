@@ -1,0 +1,20 @@
+{
+    "welcomeFile": "pocapapp/webapp/",
+    "authenticationMethod": "route",
+    "sessionTimeout": 100,
+    "pluginMetadataEndpoint": "/metadata",
+    "routes": [
+        {
+            "source": "^/pocapapp/webapp/(.*)",
+            "target": "$1",
+            "localDir": "pocapapp/webapp/",
+            "authenticationType": "xsuaa"
+        },
+        {
+            "source": "^/(.*)$",
+            "destination": "srv-api",
+            "authenticationType": "xsuaa"
+        }
+    ]
+}
+ 
