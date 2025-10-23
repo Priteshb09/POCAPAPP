@@ -1,0 +1,82 @@
+### Get all service which are available
+GET http://localhost:4004/odata/v4/MyService
+ 
+### Get the metadata of the service
+GET http://localhost:4004/odata/v4/MyService/$metadata
+ 
+### Get Employee V4 Service
+GET http://localhost:4004/odata/v4/MyService/EmployeeV4
+ 
+### Get Employee V4 Service
+GET http://localhost:4004/odata/v4/MyService/EmployeeV4/02BD2137-0890-1EEA-A6C2-BB55C198A7FB
+ 
+### Insert an employee record
+POST  http://localhost:4004/odata/v4/MyService/EmployeeV4
+Content-Type: application/json
+ 
+{
+  "Currency_code": "USD",
+  "ID": "02BD2137-0890-1EEA-A6C2-BB55C198ACCC",
+  "accountNumber": "76543340",
+  "bankId": "66668888",
+  "bankName": "My Bank of New Delhi",
+  "email": "mr.ram@itelo.info",
+  "gender": "M",
+  "language": "E",
+  "loginName": "MR.RAM",
+  "mobile": null,
+  "nameFirst": "Mr",
+  "nameInitials": null,
+  "nameLast": "RAM",
+  "nameMiddle": null,
+  "salaryAmount": "66574.00"
+}
+ 
+### Update Salary Amount
+PATCH http://localhost:4004/odata/v4/MyService/EmployeeV4/02BD2137-0890-1EEA-A6C2-BB55C198ACCC
+Content-Type: application/json
+ 
+{
+    "Currency_code" : "EUR",
+    "salaryAmount" : "84989.00"
+}
+ 
+### Get Purhcase Orders along with PO Items
+GET http://localhost:4004/odata/v4/MyService/POsV4?$expand=Items
+ 
+ 
+### Get Top 5 Employees
+GET http://localhost:4004/odata/v4/MyService/EmployeeV4?$top=5&$skip=5
+ 
+### Get specific fields in the OData V4 service
+GET http://localhost:4004/odata/v4/MyService/EmployeeV4/02BD2137-0890-1EEA-A6C2-BB55C197C7FB?$select=nameFirst,nameMiddle,nameLast
+
+### Executing the custom action using tester.http locally
+POST http://localhost:4004/odata/v4/MyService/createEmployee
+Content-Type: application/json
+ 
+{
+  "Currency_code": "USD",
+  "accountNumber": "76544440",
+  "bankId": "66664488",
+  "bankName": "My Bank of Mumbai",
+  "email": "kevin.bexter@itelo.info",
+  "gender": "M",
+  "language": "E",
+  "loginName": "KEVINB",
+  "mobile": null,
+  "nameFirst": "kevin",
+  "nameInitials": null,
+  "nameLast": "bexter",
+  "nameMiddle": null,
+  "salaryAmount": "96574.00"
+}
+
+###
+POST http://localhost:4004/odata/v4/MyService/POsV4(74867AD200E41EDBA5D8B0C98DC28052)/CatalogService.dis…
+Content-Type: application/json
+ 
+{}
+
+###
+GET http://localhost:4004/odata/v4/MyService/POsV4(74867AD200E41EDBA5D8B0C98DC2A052)/CatalogService.largetOrder()
