@@ -3,7 +3,7 @@ using {
     poapp.db.transaction
 } from '../db/datamodel';
  
-service CatalogService @(path: 'MyService') {
+service CatalogService @(path: 'MyService', requires : 'authenticated-user') {
  
     @readonly
     entity BusinessPartnerV4 as projection on master.businesspartner;
@@ -11,7 +11,14 @@ service CatalogService @(path: 'MyService') {
     @readonly
     entity AddressV4         as projection on master.address;
  
-    entity EmployeeV4        as projection on master.employee;
+    entity EmployeeV4 @(restrict: [
+        {
+            grant : ['READ'], to : 'Viewer', where : 'bankName = $user.bankName'
+        },
+        {
+            grant : ['WRITE'], to : 'Admin'
+        }
+    ])        as projection on master.employee;
  
     @readonly
     entity ProductV4         as projection on master.product;

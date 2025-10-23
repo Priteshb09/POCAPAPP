@@ -1,0 +1,52 @@
+{
+    "xsappname": "POApplication",
+    "tenant-mode": "dedicated",
+    "scopes": [
+        {
+            "name": "$XSAPPNAME.Viewer",
+            "description": "View data using this scope"
+        },
+        {
+            "name": "$XSAPPNAME.Admin",
+            "description": "CRUD data using this scope"
+        }
+    ],
+    "attributes": [
+        {
+            "name": "bankName",
+            "description": "bankName",
+            "valueType": "string"
+        }
+    ],
+    "role-templates": [
+        {
+            "name": "Viewer",
+            "description": "Viewer : Authorized to read all the data based on the restrictions",
+            "scope-references": [
+                "$XSAPPNAME.Viewer"
+            ],
+            "attribute-references": [
+                {
+                    "name": "bankName"
+                }
+            ]
+        },
+        {
+            "name": "Admin",
+            "description": "Edit, Delete the data from service",
+            "scope-references": [
+                "$XSAPPNAME.Admin"
+            ]
+        }
+    ],
+    "authorities": [
+        "$ACCEPT_GRANTED_AUTHORITIES"
+    ],
+    "oauth2-configuration": {
+        "token-validity": 9000,
+        "redirect-uris": [
+            "https://*.cfapps.us10-001.hana.ondemand.com/login/callback"
+        ]
+    },
+    "xsenableasyncservice": "true"
+}
